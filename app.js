@@ -14,8 +14,7 @@ function getHeaders(request) {
      request.connection.remoteAddress ||
      request.socket.remoteAddress ||
      request.connection.socket.remoteAddress;
-  var langHeader = request.headers['accept-language']
-    .substring(0, request.headers['accept-language'].indexOf(','));
+  var langHeader = request.headers['accept-language'];
   var softwareHeader = request.headers['user-agent']
     .substring(request.headers['user-agent'].indexOf('(') + 1,
     request.headers['user-agent'].indexOf(')'));
