@@ -10,7 +10,10 @@ function getHeaders(request) {
 
   //grabs the client IP address, first section of the language, and
   //the user agent from the request object
-  var ipHeader = request.connection.remoteAddress.toString();
+  var ipHeader = request.headers['x-forwarded-for'] ||
+     request.connection.remoteAddress ||
+     request.socket.remoteAddress ||
+     request.connection.socket.remoteAddress;
   var langHeader = request.headers['accept-language']
     .substring(0, request.headers['accept-language'].indexOf(','));
   var softwareHeader = request.headers['user-agent']
